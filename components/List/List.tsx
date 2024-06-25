@@ -1,0 +1,37 @@
+import React, { ReactNode } from "react";
+import { Entry } from "@/models";
+import Podcast from "@/components/Podcast";
+
+import styles from "./list.module.scss";
+
+interface ListProps {
+  testId: string;
+  title?: ReactNode;
+  className?: string;
+  list: Entry[];
+}
+
+function List({ list, className, title, testId }: ListProps) {
+  return (
+    <section className={styles.conatainer}>
+      {title}
+      <ul
+        className={className ? styles[className] : styles.default}
+        data-testid={testId}
+      >
+        {list.map((podcast) => (
+          <Podcast
+            key={podcast.id.attributes["im:id"]}
+            title={podcast.title.label}
+            podcastId={podcast.id.attributes["im:id"]}
+            src={podcast["im:image"][2].label}
+            alt={podcast["im:name"].label}
+            author={podcast["im:artist"].label}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export default List;

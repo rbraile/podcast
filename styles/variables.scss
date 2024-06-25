@@ -1,0 +1,25 @@
+$blue: #00a2e0;
+$greyDark: #18203f;
+$greyDark2: #010623;
+$greyLight: #e6eef8;
+$red: #ee3d3d;
+$borderGrey: #bdbdbd;
+$s: 12px;
+$m: 14px;
+$l: 16px;
+$xl: 20px;
+
+$movile: 768px;
+$tablet: 960px;
+$desktop: 1200px;
+
+@mixin errorStyle {
+  box-sizing: border-box;
+  height: 30px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
+  color: $red;
+  margin: 0;
+}

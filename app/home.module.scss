@@ -1,0 +1,38 @@
+.mainBox {
+  width: $desktop;
+}
+
+.title {
+  color: $blue;
+  font-weight: bold;
+  font-size: $m;
+  border-bottom: 1px solid $borderGrey;
+  padding-bottom: 6px;
+}
+
+.searchFieldSection {
+  width: 100%;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.searchField {
+  border: 1px solid $borderGrey;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.counter {
+  background-color: $blue;
+  color: white;
+  font-weight: bold;
+  font-size: $m;
+  margin-right: 6px;
+  border-radius: 5px;
+  align-items: center;
+  padding: 2px 2px;
+}

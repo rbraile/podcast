@@ -1,0 +1,22 @@
+.conatainer {
+  width: 100%;
+}
+
+@mixin list {
+  width: 100%;
+  display: flex;
+  margin: 92px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.default {
+  @include list;
+  flex-direction: column;
+}
+
+.row {
+  @include list;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
