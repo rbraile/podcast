@@ -11,6 +11,9 @@
 
 .podcastContainer {
   position: relative;
+  &:hover {
+    cursor: pointer;
+  }
 
   .podcastContent {
     flex-direction: column;
@@ -46,4 +49,19 @@
 
 .podcastAvatar {
   border-radius: 50%;
+}
+
+.podcastItem {
+  .podcastAvatar {
+    border-radius: 5px;
+    max-width: 100px;
+    margin: 0 auto;
+  }
+
+  .title {
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 0;
+    border-top: 1px solid #ccc;
+  }
 }

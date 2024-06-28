@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Entry } from "@/models";
+import React, { ReactNode, MouseEventHandler } from "react";
+import type { IPodcast } from "@/types/Podcast";
 import Podcast from "@/components/Podcast";
 
 import styles from "./list.module.scss";
@@ -8,10 +8,17 @@ interface ListProps {
   testId: string;
   title?: ReactNode;
   className?: string;
-  list: Entry[];
+  list: IPodcast[];
+  handleSelectPodcast?: (arg0: string) => any;
 }
 
-function List({ list, className, title, testId }: ListProps) {
+function List({
+  list,
+  className,
+  title,
+  testId,
+  handleSelectPodcast,
+}: ListProps) {
   return (
     <section className={styles.conatainer}>
       {title}
@@ -27,6 +34,7 @@ function List({ list, className, title, testId }: ListProps) {
             src={podcast["im:image"][2].label}
             alt={podcast["im:name"].label}
             author={podcast["im:artist"].label}
+            handleSelectPodcast={handleSelectPodcast}
           />
         ))}
       </ul>

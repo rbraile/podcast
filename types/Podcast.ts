@@ -1,6 +1,6 @@
 export interface Feed {
   author: Author;
-  entry: Entry[];
+  entry: IPodcast[];
   updated: string;
   rights: string;
   title: string;
@@ -14,7 +14,7 @@ export interface Author {
   uri: string;
 }
 
-export interface Entry {
+export interface IPodcast {
   "im:name": {
     label: string;
   };

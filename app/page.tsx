@@ -1,10 +1,10 @@
 "use client";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
-// models
-import type { Entry } from "@/models";
-// context
-import { PodcastContext } from "@/context";
+import { useDispatch } from "react-redux";
+// types
+import type { IPodcast } from "@/types/Podcast";
 // components
 import List from "@/components/List";
 import Main from "@/components/Main";
@@ -12,36 +12,45 @@ import Spinner from "@/components/Spinner";
 // styles
 import styles from "./home.module.scss";
 
+import { useGetAllPodcastQuery } from "@/services/podcast";
+import { setPodcastSelected } from "@/redux/features/podcastSlice";
+
 const PodcastListPage: NextPage = () => {
-  const { podcastList: initialPodcastList } = useContext(PodcastContext);
   const [search, setSearch] = useState<string>("");
-  const [podcastList, setPodcastList] = useState<Entry[]>(initialPodcastList);
+  const [podcastList, setPodcastList] = useState<IPodcast[]>();
+  const { data, isLoading } = useGetAllPodcastQuery({});
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
-    const filterPodcastlist = initialPodcastList.filter((podcast) =>
+    const filterPodcastlist = data?.feed?.entry.filter((podcast: IPodcast) =>
       podcast.title.label.toLocaleLowerCase().includes(search)
     );
     setPodcastList(filterPodcastlist);
-  }, [search, initialPodcastList]);
+  }, [search]);
 
   const handleSearchChange = (event: React.FormEvent<HTMLInputElement>) => {
     setSearch(event.currentTarget.value.toLocaleLowerCase().trim());
   };
 
-  const listProps = {
-    list: podcastList,
-    testId: "podcastList",
-    className: "row",
+  const handleSelectPodcast = (podcastId: string) => {
+    const podcastSelected = data?.feed?.entry.find(
+      (podcast: IPodcast) => podcast.id.attributes["im:id"] === podcastId
+    );
+    dispatch(setPodcastSelected(podcastSelected));
+    router.push(`/podcast/${podcastId}`);
   };
+
+  if (isLoading) return <p>loading</p>;
 
   return (
     <Main className={styles.mainBox}>
       <section className={styles.searchFieldSection}>
         <h1 className={styles.title}>Podcaster</h1>
-        {podcastList.length === 0 && <Spinner />}
+        {isLoading && <Spinner />}
         <div className={styles.searchContainer}>
           <span data-testid="counter" className={styles.counter}>
-            {podcastList.length}
+            {podcastList ? podcastList.length : data?.feed?.entry.length}
           </span>
           <input
             data-testid="search"
@@ -52,8 +61,15 @@ const PodcastListPage: NextPage = () => {
             onChange={handleSearchChange}
           />
         </div>
+        {
+          <List
+            list={podcastList ? podcastList : data.feed.entry}
+            testId="podcastList"
+            className="row"
+            handleSelectPodcast={handleSelectPodcast}
+          />
+        }
       </section>
-      {podcastList && <List {...listProps} />}
     </Main>
   );
 };

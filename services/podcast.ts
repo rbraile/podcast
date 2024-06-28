@@ -1,50 +1,28 @@
-import axios from "axios";
-import type { AxiosRequestConfig, AxiosError } from "axios";
+import type { IPodcast } from "@/types/Podcast";
+import type { RootState } from "@/redux/store";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const ALL_PODCAST_UTL =
   "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
-export interface AxiosRequest {
-  url: string;
-  method: AxiosRequestConfig["method"];
-  body?: AxiosRequestConfig["data"];
-  params?: AxiosRequestConfig["params"];
-  headers?: AxiosRequestConfig["headers"];
-}
+export const podcastApi = createApi({
+  reducerPath: "podcastApi",
+  baseQuery: fetchBaseQuery(),
+  keepUnusedDataFor: 86400,
+  endpoints: (builder) => ({
+    getAllPodcast: builder.query({
+      query: () => ({
+        url: ALL_PODCAST_UTL,
+        method: "GET",
+      }),
+    }),
+    getPodcastById: builder.query<IPodcast, string>({
+      query: (podcastId) => ({
+        url: `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`,
+        method: "GET",
+      }),
+    }),
+  }),
+});
 
-const axiosBaseRequest = async ({
-  url,
-  method,
-  body,
-  params,
-  headers,
-}: AxiosRequest) => {
-  try {
-    const result = await axios({
-      url,
-      method,
-      data: body,
-      params,
-      headers,
-    });
-    return { data: result.data };
-  } catch (axiosError) {
-    const error = axiosError as AxiosError;
-
-    return {
-      error: {
-        status: error.response?.status,
-        data: error.response?.data || error.message,
-      },
-    };
-  }
-};
-
-export const getAllPodcast = async () => {
-  const allPodcast = await axiosBaseRequest({
-    url: ALL_PODCAST_UTL,
-    method: "GET",
-  });
-
-  return allPodcast;
-};
+export const { useGetAllPodcastQuery, useGetPodcastByIdQuery } = podcastApi;
