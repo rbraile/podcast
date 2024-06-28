@@ -1,0 +1,26 @@
+.pageContainer {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.episodeContainer {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 20px 15px;
+  width: 76%;
+  height: 100%;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.description {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.audioPlayer {
+  width: 100%;
+}

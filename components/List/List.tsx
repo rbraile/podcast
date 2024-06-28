@@ -1,4 +1,4 @@
-import React, { ReactNode, MouseEventHandler } from "react";
+import { ReactNode } from "react";
 import type { IPodcast } from "@/types/Podcast";
 import Podcast from "@/components/Podcast";
 
@@ -9,7 +9,7 @@ interface ListProps {
   title?: ReactNode;
   className?: string;
   list: IPodcast[];
-  handleSelectPodcast?: (arg0: string) => any;
+  handleSelectPodcast?: (arg0: string) => void;
 }
 
 function List({

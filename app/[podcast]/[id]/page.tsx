@@ -2,20 +2,17 @@
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { millisecondsToMinutes, format } from "date-fns";
-import { podcastSelector } from "@/redux/features/podcastSlice";
-import { useAppSelector } from "@/redux/store";
 import { useGetPodcastByIdQuery } from "@/services/podcast";
-import Podcast from "@/components/Podcast";
 import { setEpisode } from "@/redux/features/episodeSlice";
 import { IEpisode } from "@/types/Episode";
 
+import Sidebar from "@/components/Sidebar";
+
 import styles from "./episodeList.module.scss";
-import { IPodcast } from "@/types/Podcast";
 
 export default function PodcastItem({ params }: { params: { id: string } }) {
   const router = useRouter();
   const { data, isLoading }: any = useGetPodcastByIdQuery(params.id);
-  const podcastSelected: IPodcast | any = useAppSelector(podcastSelector);
   const dispatch = useDispatch();
 
   const handleEpisodeSelection = (trackId: number) => {
@@ -28,17 +25,7 @@ export default function PodcastItem({ params }: { params: { id: string } }) {
 
   return !isLoading && data ? (
     <div className={styles.container}>
-      <aside className={styles.sidebar}>
-        <Podcast
-          key={data.results[0].artistName}
-          title={data.results[0].collectionName}
-          src={data.results[0].artworkUrl100}
-          alt={data.results[0].artistName}
-          author={data.results[0].artistName}
-          description={podcastSelected?.summary?.label}
-          type="podcastItem"
-        />
-      </aside>
+      <Sidebar />
       <section className={styles.episodeContainer}>
         <div className={styles.counter}>
           <h2 className={styles.title}>
@@ -63,11 +50,9 @@ export default function PodcastItem({ params }: { params: { id: string } }) {
               className={styles.episodeRow}
               onClick={() => handleEpisodeSelection(episode.trackId)}
             >
-              {/* <Link href={`${params.id}/episode/${episode.trackId}`}> */}
               <span>{episode.trackName}</span>
               <span>{millisecondsToMinutes(episode.trackTimeMillis)}</span>
               <span>{format(episode.releaseDate, "dd/mm/yyyy")} </span>
-              {/* </Link> */}
             </li>
           ))}
         </ul>

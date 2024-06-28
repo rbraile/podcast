@@ -4,13 +4,6 @@
   margin: 0 auto;
 }
 
-.sidebar {
-  width: 18%;
-  margin-right: 6%;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 0 15px;
-}
-
 .counter {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 15px;
@@ -36,20 +29,23 @@
   display: flex;
   padding: 10px;
   background-color: #eee;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
 
   &:nth-child(odd) {
     background-color: #fff;
   }
   &:first-child {
     color: #000;
+    border-bottom: 2px solid #ccc;
   }
-}
 
-.episodeRow span {
-  width: 10%;
-  text-align: left;
-}
+  span {
+    width: 10%;
+    text-align: left;
+  }
 
-.episodeRow span:first-child {
-  width: 80%;
+  span:first-child {
+    width: 80%;
+  }
 }
