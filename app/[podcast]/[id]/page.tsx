@@ -53,7 +53,11 @@ export default function PodcastItem({ params }: { params: { id: string } }) {
                 onClick={() => handleEpisodeSelection(episode.trackId)}
               >
                 <span>{episode.trackName}</span>
-                <span>{millisecondsToMinutes(episode.trackTimeMillis)}</span>
+                <span>
+                  {episode.trackTimeMillis
+                    ? millisecondsToMinutes(episode.trackTimeMillis)
+                    : "0"}
+                </span>
                 <span>{format(episode.releaseDate, "dd/mm/yyyy")} </span>
               </li>
             ))}
