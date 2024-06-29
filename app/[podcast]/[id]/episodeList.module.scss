@@ -14,7 +14,7 @@
 }
 
 .episodeContainer {
-  width: 76%;
+  width: 74%;
 }
 
 .episodeList {
@@ -30,14 +30,15 @@
   padding: 10px;
   background-color: #eee;
   cursor: pointer;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid $borderGrey;
 
   &:nth-child(odd) {
     background-color: #fff;
   }
   &:first-child {
     color: #000;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid $borderGrey;
+    cursor: default;
   }
 
   span {

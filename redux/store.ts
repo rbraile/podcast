@@ -13,7 +13,7 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import { podcastApi } from "@/services/podcast";
+import { podcastApi } from "@/services";
 import podcastSelectedReducer from "@/redux/features/podcastSlice";
 import episodeReducer from "@/redux/features/episodeSlice";
 
@@ -46,6 +46,6 @@ export const persistor = persistStore(store);
 setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+
 export type AppDispatch = typeof store.dispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

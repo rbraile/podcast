@@ -1,13 +1,21 @@
 .header {
-	background: $blue;
-	width: 100%;
-	height: 80px;
-	text-align: center;
-	border-bottom: 2px solid #fff;
+  width: $desktop;
+  margin: 0 auto 30px;
+  justify-content: space-between;
+  display: flex;
+  border-bottom: 1px solid $borderGrey;
 }
 
-@media screen and (max-width: 1024px) {
-	.header {
-		padding: 0px 10px 20px 10px;
-	}
+.title {
+  color: $blue;
+  font-weight: bold;
+  font-size: $m;
+  padding-bottom: 6px;
+  margin-top: 40px;
 }
+
+// @media screen and (max-width: $desktop) {
+//   .header {
+//     padding: 0px 10px 20px 10px;
+//   }
+// }

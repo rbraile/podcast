@@ -1,5 +1,4 @@
 import type { IPodcast } from "@/types/Podcast";
-import type { RootState } from "@/redux/store";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const ALL_PODCAST_UTL =
