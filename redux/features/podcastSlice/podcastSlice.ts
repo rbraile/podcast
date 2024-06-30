@@ -1,10 +1,22 @@
+import { IPodcast } from "@/types/Podcast";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+interface InitialStateProps {
+  podcastSelected: IPodcast;
+}
+
+const initialState: Partial<InitialStateProps> = {
+  podcastSelected: undefined,
+};
 
 const podcastSlice = createSlice({
   name: "podcast",
-  initialState: {},
+  initialState,
   reducers: {
-    setPodcastSelected: (state: any, action: PayloadAction) => {
+    setPodcastSelected: (
+      state: Partial<InitialStateProps>,
+      action: PayloadAction<IPodcast>
+    ) => {
       state.podcastSelected = action.payload;
     },
   },

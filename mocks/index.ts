@@ -1,1 +1,1 @@
-export { podcastMock } from "./podcast";
+export { podcastMock, podcastListMock } from "./podcast";

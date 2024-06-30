@@ -19,7 +19,7 @@ const PodcastListPage: NextPage = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState<string>("");
   const [podcastList, setPodcastList] = useState<IPodcast[]>();
-  const { data, isLoading } = useGetAllPodcastQuery({});
+  const { data } = useGetAllPodcastQuery({});
   const router = useRouter();
 
   useEffect(() => {

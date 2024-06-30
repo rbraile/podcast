@@ -4,7 +4,7 @@ import Podcast from "@/components/Podcast";
 
 import styles from "./list.module.scss";
 
-interface ListProps {
+export interface ListProps {
   testId: string;
   title?: ReactNode;
   className?: string;

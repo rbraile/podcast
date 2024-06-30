@@ -1,8 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import NProgress from "nprogress";
-import "nprogress/nprogress.css"; // Import NProgress styles
+import { useAppSelector } from "@/redux/store";
+import { QueryStatus } from "@reduxjs/toolkit/query/react";
 
 import styles from "./spinner.module.scss";
 
@@ -12,20 +10,13 @@ import styles from "./spinner.module.scss";
  * @description Spinner component
  */
 function Spinner() {
-  let pathname = usePathname();
-  let searchParams = useSearchParams();
+  const isLoading = useAppSelector((state) => {
+    return Object.values(state.podcastApi.queries).some((query) => {
+      return query && query.status === QueryStatus.pending;
+    });
+  });
 
-  useEffect(() => {
-    const handleStart = () => NProgress.start();
-    const handleStop = () => NProgress.done();
-    handleStop();
-
-    return () => {
-      handleStart();
-    };
-  }, [pathname, searchParams]);
-
-  return <span className={styles.loader}></span>;
+  return isLoading && <span className={styles.loader}></span>;
 }
 
 export default Spinner;
