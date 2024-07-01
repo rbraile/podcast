@@ -14,12 +14,13 @@ import styles from "./home.module.scss";
 
 import { useGetAllPodcastQuery } from "@/services";
 import { setPodcastSelected } from "@/redux/features/podcastSlice";
+import Spinner from "@/components/Spinner";
 
 const PodcastListPage: NextPage = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState<string>("");
   const [podcastList, setPodcastList] = useState<IPodcast[]>();
-  const { data } = useGetAllPodcastQuery({});
+  const { data, isLoading } = useGetAllPodcastQuery({});
   const router = useRouter();
 
   useEffect(() => {
@@ -41,6 +42,13 @@ const PodcastListPage: NextPage = () => {
     router.push(`/podcast/${podcastId}`);
   };
 
+  if (isLoading)
+    return (
+      <div className={styles.center}>
+        <Spinner />
+      </div>
+    );
+
   return (
     <Main className={styles.mainBox}>
       <section className={styles.searchFieldSection}>
@@ -59,7 +67,7 @@ const PodcastListPage: NextPage = () => {
         </div>
         {
           <List
-            list={podcastList ? podcastList : data.feed.entry}
+            list={podcastList ? podcastList : data?.feed?.entry}
             testId="podcastList"
             className="row"
             handleSelectPodcast={handleSelectPodcast}

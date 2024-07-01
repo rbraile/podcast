@@ -12,7 +12,7 @@ export default function PodcastItem() {
 
   return (
     data && (
-      <div className={styles.pageContainer}>
+      <div data-testid="episodePage" className={styles.pageContainer}>
         <Sidebar />
         <section className={styles.episodeContainer}>
           <h1 className={styles.title}>{data.episode.trackName}</h1>
@@ -21,6 +21,7 @@ export default function PodcastItem() {
             dangerouslySetInnerHTML={{ __html: data.episode.description }}
           ></p>
           <audio
+            data-testid="audioPlayer"
             className={styles.audioPlayer}
             src={data.episode.episodeUrl}
             controls

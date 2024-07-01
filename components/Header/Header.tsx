@@ -13,7 +13,9 @@ function Header() {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>
-        <Link href="/">Podcaster</Link>
+        <Link href="/" data-testid="backToHome">
+          Podcaster
+        </Link>
       </h1>
       <Spinner />
     </header>

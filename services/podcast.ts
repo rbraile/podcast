@@ -1,7 +1,7 @@
 import type { IPodcast } from "@/types/Podcast";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const ALL_PODCAST_UTL =
+export const ALL_PODCAST_UTL =
   "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
 export const podcastApi = createApi({

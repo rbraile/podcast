@@ -33,7 +33,11 @@ function Podcast({
 
   const children = (
     <div className={type === "podcastItem" ? styles.podcastItem : ""}>
-      <Link className={styles.imageLink} href={`/podcast/${podcastId}`}>
+      <Link
+        className={styles.imageLink}
+        href={`/podcast/${podcastId}`}
+        {...(type && { ["data-testid"]: "backToPodcastList" })}
+      >
         <img className={styles.podcastAvatar} src={src} alt={alt} />
       </Link>
       <div className={styles.podcastContent}>

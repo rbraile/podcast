@@ -1,15 +1,9 @@
 "use client";
-import Link from "next/link";
-import styles from "./error.module.scss";
+import ErrorMessage from "@/components/ErrorMessage";
 
 function Error() {
   return (
-    <div className={styles.containerError}>
-      <h2>Oops, there is an error!</h2>
-      <Link className={styles.link} href="/">
-        Back to Home
-      </Link>
-    </div>
+    <ErrorMessage message="Oops, there is an error trying to load the page!" />
   );
 }
 
