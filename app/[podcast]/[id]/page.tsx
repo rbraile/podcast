@@ -13,7 +13,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 
 export default function PodcastItem({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const { data, isLoading }: any = useGetPodcastByIdQuery(params.id);
+  const { data, isLoading, error }: any = useGetPodcastByIdQuery(params.id);
   const dispatch = useDispatch();
 
   const handleEpisodeSelection = (trackId: number) => {
@@ -30,7 +30,7 @@ export default function PodcastItem({ params }: { params: { id: string } }) {
       <section className={styles.episodeContainer}>
         <div className={styles.counter}>
           <h2 className={styles.title}>
-            Episodes: {data.results[0].trackCount}
+            Episodes: {data?.results?.[0].trackCount}
           </h2>
         </div>
         <ul data-testid="episodeList" className={styles.episodeList}>
@@ -45,7 +45,7 @@ export default function PodcastItem({ params }: { params: { id: string } }) {
               <strong>Durarion</strong>
             </span>
           </li>
-          {data.results.slice(1).map((episode: any) => (
+          {data?.results?.slice(1).map((episode: any) => (
             <li
               key={episode.trackId}
               className={styles.episodeRow}
@@ -64,6 +64,6 @@ export default function PodcastItem({ params }: { params: { id: string } }) {
       </section>
     </div>
   ) : (
-    <ErrorMessage />
+    !isLoading && error && <ErrorMessage />
   );
 }

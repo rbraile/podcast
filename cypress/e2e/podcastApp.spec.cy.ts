@@ -4,6 +4,7 @@ import { ALL_PODCAST_UTL } from "@/services";
 describe("podcast app spec", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.wait(20000);
   });
   it("should load 100 podcast list", () => {
     cy.get('[data-testid="counter"]').should("have.text", "100");
@@ -26,6 +27,8 @@ describe("podcast app spec", () => {
       .children("a")
       .click({ force: true });
 
+    cy.wait(10000);
+
     cy.get("h2").contains("Episodes");
     cy.get('[data-testid="episodeList"]')
       .find("li")
@@ -39,11 +42,13 @@ describe("podcast app spec", () => {
       .children("div")
       .children("a")
       .click({ force: true });
+    cy.wait(10000);
 
     cy.get('[data-testid="episodeList"]')
       .find("li")
       .eq(1)
       .click({ force: true });
+    cy.wait(10000);
 
     cy.url().should("include", "/episode");
     cy.get('[data-testid="audioPlayer"]').should("exist");
@@ -56,9 +61,9 @@ describe("podcast app spec", () => {
       .children("div")
       .children("a")
       .click({ force: true });
-
+    cy.wait(10000);
     cy.get('[data-testid="backToHome"]').click();
-    cy.wait(500);
+    cy.wait(10000);
 
     cy.url().should("equal", Cypress.config().baseUrl + "/");
 
@@ -68,23 +73,30 @@ describe("podcast app spec", () => {
       .children("div")
       .children("a")
       .click({ force: true });
+    cy.wait(10000);
 
     cy.get('[data-testid="episodeList"]')
       .find("li")
       .eq(1)
       .click({ force: true });
-    cy.wait(500);
+    cy.wait(10000);
+
     cy.get('[data-testid="episodePage"]').should("exist");
     cy.get('[data-testid="backToPodcastList"]').click({ force: true });
+    cy.wait(10000);
     cy.get('[data-testid="podcastDetail"]').should("exist");
   });
 
   it("should filter", () => {
-    cy.intercept("GET", ALL_PODCAST_UTL, (req) => {
-      req.reply((res) => {
-        res.send({ feed: { entry: podcastListMock } });
-      });
-    });
+    cy.intercept(
+      "GET",
+      "https://api.allorigins.win/get?url=https%3A%2F%2Fitunes.apple.com%2Fus%2Frss%2Ftoppodcasts%2Flimit%3D100%2Fgenre%3D1310%2Fjson",
+      (req) => {
+        req.reply((res) => {
+          res.send({ feed: { entry: podcastListMock } });
+        });
+      }
+    );
 
     cy.get('[data-testid="counter"]').should("have.text", "3");
 

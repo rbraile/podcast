@@ -2,35 +2,59 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+### Pre requirements
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+you need node v20.15.0 to install
+you need v1.22.22
+
+## Installation
+
+---
+
+A little intro about the installation.
+download the folder, enter in the folder and run the folowing comands
+
+## Prod
+
+```
+$ yarn install
+$ yarn build
+$ yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+and later go to http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## dev
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+to run in dev mode run the following commands
 
-## Learn More
+```
+$ yarn install
+$ npm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+and later go to http://localhost:3030
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Test Jest
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+$ yarn test
+```
 
-## Deploy on Vercel
+## Test Cypress
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You must have the server running and it must be running at the url http://localhost:3030
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## for run cypress in the browser run the following commands
+
+```
+$ yarn dev
+$ yarn cypress
+```
+
+## for run cypress in the console run the following commands
+
+```
+$ npm run dev
+$ npm run cypress:headles
+```

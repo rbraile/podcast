@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useSelector, TypedUseSelectorHook } from "react-redux";
-import storage from "redux-persist/lib/storage";
+import storage from "./storage";
 import {
   persistReducer,
   persistStore,

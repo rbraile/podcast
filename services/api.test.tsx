@@ -12,16 +12,23 @@ function Wrapper(props: { children: ReactNode }) {
   return <Provider store={store}>{props.children}</Provider>;
 }
 
-const data = {};
+const data = {
+  contents:
+    '\n\n\n{\n "resultCount":21,\n "results": [\n{"wrapperType":"track", "kind":"podcast"}\n]\n}',
+};
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 describe("podcast-hooks", () => {
   it("should call getAllPodcast", async () => {
     fetchMock.mockOnceIf(
-      "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json",
+      "https://api.allorigins.win/get?url=https%3A%2F%2Fitunes.apple.com%2Fus%2Frss%2Ftoppodcasts%2Flimit%3D100%2Fgenre%3D1310%2Fjson",
       () =>
         Promise.resolve({
           status: 200,
-          body: JSON.stringify({ data }),
+          body: JSON.stringify(data),
         })
     );
     const { result } = renderHook(() => useGetAllPodcastQuery({}), {
@@ -41,11 +48,11 @@ describe("podcast-hooks", () => {
 
   it("should call useGetPodcastByIdQuery", async () => {
     fetchMock.mockOnceIf(
-      `https://itunes.apple.com/lookup?id=1234&media=podcast&entity=podcastEpisode&limit=20`,
+      `https://api.allorigins.win/get?url=https%3A%2F%2Fitunes.apple.com%2Flookup%3Fid%3D1234%26media%3Dpodcast%26entity%3DpodcastEpisode%26limit%3D20`,
       () =>
         Promise.resolve({
           status: 200,
-          body: JSON.stringify({ data }),
+          body: JSON.stringify(data),
         })
     );
 

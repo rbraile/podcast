@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  width: $desktop;
+  margin: 0 auto;
+}
+
+.counter {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 15px;
+}
+
+.title {
+  margin: 0;
+}
+
+.episodeContainer {
+  width: 74%;
+}
