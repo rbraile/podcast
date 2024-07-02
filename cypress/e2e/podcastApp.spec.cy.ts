@@ -1,5 +1,4 @@
 import { podcastListMock } from "@/mocks";
-import { ALL_PODCAST_UTL } from "@/services";
 
 describe("podcast app spec", () => {
   beforeEach(() => {

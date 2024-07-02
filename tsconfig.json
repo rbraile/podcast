@@ -33,5 +33,5 @@
     ".next/types/**/*.ts",
     "jest.config.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "cypress", "./cypress.config.ts", "**/*.cy.tsx"]
 }

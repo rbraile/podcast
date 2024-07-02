@@ -5,6 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ### Pre requirements
 
 you need node v20.15.0 to install
+
 you need v1.22.22
 
 ## Installation
@@ -12,6 +13,7 @@ you need v1.22.22
 ---
 
 A little intro about the installation.
+
 download the folder, enter in the folder and run the folowing comands
 
 ## Prod

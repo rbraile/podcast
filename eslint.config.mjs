@@ -18,7 +18,7 @@ export default [
     },
   },
   {
-    ignores: [".next/*", "jest.config.js"],
+    ignores: [".next/*", "jest.config.js", "coverage/*"],
   },
   {
     settings: {
