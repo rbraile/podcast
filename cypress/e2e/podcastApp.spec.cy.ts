@@ -1,5 +1,3 @@
-import { podcastListMock } from "@/mocks";
-
 describe("podcast app spec", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -87,19 +85,9 @@ describe("podcast app spec", () => {
   });
 
   it("should filter", () => {
-    cy.intercept(
-      "GET",
-      "https://api.allorigins.win/get?url=https%3A%2F%2Fitunes.apple.com%2Fus%2Frss%2Ftoppodcasts%2Flimit%3D100%2Fgenre%3D1310%2Fjson",
-      (req) => {
-        req.reply((res) => {
-          res.send({ feed: { entry: podcastListMock } });
-        });
-      }
-    );
-
-    cy.get('[data-testid="counter"]').should("have.text", "3");
+    cy.get('[data-testid="counter"]').should("have.text", "100");
 
     cy.get('[data-testid="search"]').type("h");
-    cy.get('[data-testid="counter"]').should("have.text", "2");
+    cy.get('[data-testid="counter"]').should("have.text", "74");
   });
 });

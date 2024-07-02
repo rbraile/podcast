@@ -32,7 +32,7 @@ to run in dev mode run the following commands
 
 ```
 $ yarn install
-$ npm dev
+$ yarn dev
 ```
 
 and later go to http://localhost:3030
@@ -57,6 +57,6 @@ $ yarn cypress
 ## for run cypress in the console run the following commands
 
 ```
-$ npm run dev
-$ npm run cypress:headles
+$ yarn dev
+$ cypress:headless
 ```
